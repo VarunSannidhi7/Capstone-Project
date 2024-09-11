@@ -7,4 +7,4 @@ their dealings with the industry –clear language, knowing what value they will
 however, the issue is that they seldom read their policy documents carefully and as a result are not completely aware of what 
 the relationship entails. Can we build a solution to leverage technology (video, voice, QR) to inform them of most important 
 features in a more accessible manner ?
-Software
+
