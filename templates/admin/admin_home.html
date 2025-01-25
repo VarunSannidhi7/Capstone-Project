@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('admin_home')}}" style="color: yellow;">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('company_request')}}" style="color: white; padding-left: 40px;">Requests</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('admin_company_details')}}" style="color: white; padding-left: 40px;">Companies</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('admin_user_details')}}" style="color: white; padding-left: 40px;">Users</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('index')}}" style="color: white; padding-left: 40px;">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="banner_section layout_padding" style="display: flex; align-items: center; justify-content: center; height: 100vh; background-color: rgba(0, 0, 0, 0.655);">
+        <div class="container">
+            <div id="banner_slider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row justify-content-center">
+                        <div class="banner_taital_main text-center" style="margin-top: -80px;">
+                            
+                            <h1 class="banner_taital" style="color: white; font-size: 30px;">Welcome  Admin!</h1>
+                            <h5 class="tasty_text">Improve customer experience Software Insurance</h5>
+                            <p class="banner_text" style="color: white;">
+                                "Revolutionizing Insurance with Smarter Solutions: Empowering Customer Experiences!"
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('user_home')}}" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('policies1') }}" style="color: yellow; padding-left: 40px;">Policies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('chatbot')}}" style="color: white; padding-left: 40px;">Chatbot</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('index')}}" style="color: white; padding-left: 40px;">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+
+{% block content %}
+    <div style="display: flex; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.655); min-height: 700px;">
+        <center>
+            {% if policies_data %}
+                <div style="background-color: rgba(255, 255, 255, 0.85); border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); width: fit-content; padding: 80px;">
+                    <div class="row mb-3">
+                        <div class="col-md-3 text-right">
+                            <label for="policy_name">Policy Name</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input readonly type="text" class="form-control" id="policy_name" name="name" value="{{policies_data.name}}" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 text-right">
+                            <label for="policy_name">Description</label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea readonly class="form-control" id="policy_name" name="additional_info" rows="8" required>{{policies_data.additional_info}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 text-right">
+                            <label for="vid_name">Video</label>
+                        </div>
+                        <div class="col-md-9">
+                            <video width="300px" height="200px" controls>
+                                <source src="/{{policies_data.video_file}}">
+                                Your browser does not support the video tag.
+                            </video>                                            
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 text-right">
+                            <label for="audio_name">Audio</label>
+                        </div>
+                        <div class="col-md-9">
+                            <audio controls>
+                                <source src="/{{policies_data.audio_file}}">
+                                Your browser does not support the audio element.
+                            </audio>                                                                                       
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-3 text-right">
+                            <label for="audio_name">Translated Audio</label>
+                        </div>
+                        <div class="col-md-9">
+                            <audio controls>
+                                <source src="/static/saved_audio/{{file_name}}">
+                                Your browser does not support the audio element.
+                            </audio>                                                                                       
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </center>
+    </div>
+
+{% endblock %}

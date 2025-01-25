@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('company_home')}}" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('add_policy') }}" style="color: yellow; padding-left: 40px;">Add</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('manage_policy')}}" style="color: white; padding-left: 40px;">Manage</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('index')}}" style="color: white; padding-left: 40px;">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+    <div style="margin-top: 50px; min-height: 700px; height: auto; background-color: rgba(0, 0, 0, 0.655);">
+        <div class="container-fluid" style="margin-top: -50px;">
+            <div class="contact_section_2">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <center>
+                            <form action="{{url_for('add_policy')}}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()" style="background-color: rgba(255, 255, 255, 0.575); width: 600px; border-radius: 10px; margin-top: -30px;">
+                                <h1 class="contact_taital" style="color: rgba(0, 0, 0, 0.849);"><br>Add Policy</h1>
+
+                                <div class="col-11">
+                                    <input type="text" name="name" class="mail_text" placeholder="Policy Name" required
+                                    minlength="3" maxlength="30" title="Title should be 3-30 characters long">
+                                    
+                                    <textarea type="text" name="additional_info" class="mail_text" placeholder="Description" required
+                                    minlength="10" maxlength="300" title="Description should be 10-300 characters long"></textarea>
+
+                                    <div class="row">
+                                        <p style="color: black;">Upload Video <input type="file" id="video_file" name="video_file" class="mail_text" accept="video/*" required></p>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <p style="color: black;">Audio Video <input type="file" id="audio_file" name="audio_file" class="mail_text" accept="audio/*" required></p>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-info" style="margin-top: 20px; width: 30%;">Submit</button><br><br>
+
+                            </form>
+                        </center>
+                        
+                        <script>
+                            function validateForm() {
+                                var name = document.getElementsByName('eventName')[0].value;
+                            
+                                if (name.length < 3) {
+                                    alert("Event name must be at least 3 characters long.");
+                                    return false;
+                                }
+
+                                var description = document.getElementsByName('description')[0].value;
+                            
+                                if (description.length < 10) {
+                                    alert("Description must be at least 10 characters long.");
+                                    return false;
+                                }
+                            
+                                // You can add other custom validations here as needed
+                            
+                                return true;
+                            }
+
+                            // Set the current date as the minimum date
+                            const today = new Date().toISOString().split('T')[0];
+                            document.getElementById('eventDate').setAttribute('min', today);
+                        </script>
+                                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

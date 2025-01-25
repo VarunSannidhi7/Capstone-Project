@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('company_home')}}" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('add_policy') }}" style="color: white; padding-left: 40px;">Add</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('manage_policy')}}" style="color: yellow; padding-left: 40px;">Manage</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('index')}}" style="color: white; padding-left: 40px;">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+    <div style="display: flex; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.655); min-height: 700px;">
+        <div class="container">
+            {% if policies_data %}
+                <div class="row">
+                    {% for policy in policies_data %}
+                        <div class="col-md-6 mb-4">
+                            <div class="p-4" style="background-color: rgba(255, 255, 255, 0.85); border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+                                <h3 class="mb-4">Policy {{ loop.index }}</h3>
+                                <form action="{{ url_for('manage_policy') }}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()"> 
+                                    <div class="row mb-3">
+                                        <div class="col-md-3 text-right">
+                                            <label for="policy_name">Policy Name</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" id="policy_name" name="name" value="{{policy.name}}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-3 text-right">
+                                            <label for="policy_name">Description</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea class="form-control" id="policy_name" name="additional_info" rows="5" required>{{policy.additional_info}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-3 text-right">
+                                            <label for="vid_name">Video</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <video width="300px" height="200px" controls>
+                                                <source src="/{{policy.video_file}}">
+                                                Your browser does not support the video tag.
+                                            </video>                                            
+                                            <input type="file" id="vid_name" name="video_file" accept="video/*" class="mail_text">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-3 text-right">
+                                            <label for="audio_name">Audio</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <audio controls>
+                                                <source src="/{{policy.audio_file}}">
+                                                Your browser does not support the audio element.
+                                            </audio>                                                                                       
+                                            <input type="file" id="audio_name" name="audio_file" accept="audio/*" class="mail_text">
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="id" value="{{policy.id}}">
+                                    <input type="hidden" name="company" value="{{policy.company}}">
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="{{ url_for('delete_policy', policy_id = policy.id) }}" class="btn btn-danger btn-block">Delete</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        {% if loop.index is divisibleby 2 %}
+                            <div class="w-100"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-center text-light">Gallery is empty at the moment!</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

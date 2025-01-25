@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('index')}}" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('about')}}" style="color: yellow; padding-left: 40px;">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('admin')}}" style="color: white; padding-left: 40px;">Admin</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('company')}}" style="color: white; padding-left: 40px;">Company</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('user')}}" style="color: white; padding-left: 40px;">user</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+    <div style="display: flex; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.655); min-height: 700px;">
+        <div class="p-4 bg-white rounded shadow">
+            <div class="row">
+                <div class="col">
+                    <img src="/static/images/about.jpg">
+                </div>
+                <div class="col">
+                    <p style="text-align: justify;">
+                        This project introduces a modern software platform designed to transform customer experiences in the insurance industry through advanced technology and streamlined operations. The system consists of three core modules—Admin, Company, and User—each providing tailored functionalities to enhance engagement and efficiency. The Admin module enables administrators to manage company registrations, approve or reject requests, and access detailed profiles of insurance providers. This centralized control ensures smooth onboarding and effective oversight. The Company module empowers insurance firms to register and manage their profiles after approval. Companies can upload policy details in various formats, such as text, video, and audio, enabling innovative and flexible communication with customers.The User module is user-centric, allowing individuals to register, log in, and explore company information. A key feature is the AI-powered chatbot, which leverages Natural Language Processing (NLP) techniques to provide intelligent and accurate responses to queries. Additionally, the platform includes a multilingual translator supporting up to five languages, making it inclusive and accessible to a diverse user base. By integrating AI-driven assistance, multilingual support, and intuitive design, the platform modernizes customer engagement in the insurance sector. It bridges the gap between technology and service, delivering an efficient, inclusive, and customer-friendly experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

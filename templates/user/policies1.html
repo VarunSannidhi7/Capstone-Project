@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('user_home')}}" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('policies1') }}" style="color: yellow; padding-left: 40px;">Policies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('chatbot')}}" style="color: white; padding-left: 40px;">Chatbot</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('index')}}" style="color: white; padding-left: 40px;">Logout</a>
+        </li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+    <div class="banner_section layout_padding" style="display: flex; align-items: center; justify-content: center; height: 100vh; background-color: rgba(0, 0, 0, 0.655);">
+        <div class="container">
+            {% if request_data %}
+                <div style="max-height: 500px; overflow-y: auto; margin-top: -100px;">
+                    <table class="table table-bordered table-hover" style="background-color: rgba(255, 255, 255, 0.918);">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Number</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>View insurances</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in request_data %}
+                                <tr>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.number }}</td>
+                                    <td>{{ data.email }}</td>
+                                    <td>{{ data.address }}</td>
+                                    <td>
+                                        <a href="{{ url_for('policies2', company_id=data.id) }}" class="btn btn-success btn-sm" style="width: 200px;">View insurances</a><br>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            {% else %}
+                <p class="text-center text-light">No company at the moment!</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
